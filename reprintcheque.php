@@ -11,7 +11,6 @@ ini_set("max_execution_time",300000);
 
 $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash Credit', 14 => 'Dividend', 15 => '', 16 => 'DD', 18 => 'MT', 29 => 'Current', 31 => 'Saving');
 
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -24,9 +23,10 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 <div id="formdiv">
 	<div id="formheading">Print Cheques</div>
 	<div id="formfields">
-
+		
 		<?php 
 		 //bhavin start
+
 		if(isset($_GET['selective_pages_no']) && $_GET['selective_pages_no']!=""){
 			$selective=true;
 			$selective_page_array = explode(",", $_GET['selective_pages_no']);
@@ -48,7 +48,6 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 		if($resultnoofchequeleavestype = $db->get_results("SELECT DISTINCT cps_no_of_books,cps_book_size FROM tb_cps_reprintque WHERE cps_reprint_approved=1"))
 		{
 
-
 			$branchDetails = $db->get_row("SELECT branch.branch_name,branch.branch_address1,branch.branch_address2,suburb_name,city_place,suburb_postal_code,branch.branch_neftifsccode,branch.branch_printers FROM tb_branchdetails branch LEFT JOIN tb_suburbmaster suburb ON branch.branch_suburb_id = suburb.suburb_id LEFT JOIN tb_citymaster city ON branch.branch_city_id = city.city_id");
 			$printersinfo = "";
 			
@@ -62,8 +61,6 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 				exit;
 			}
 
-
-			
 			$firstchequerow = array();
 			$secondchequerow = array();
 			$thirdchequerow = array();
@@ -130,15 +127,13 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 					}				
 				}
 
-
-				
-
 				$noofbooks = 1;
 				for($j = 0;$j<count($firstrequestsliprow);$j++)
 				{		
 					if($firstrequestsliprow[$j] != "")
 						$firstrequestslipdata = implode("~",$firstrequestsliprow[$j]);
 					else
+
 						$firstrequestslipdata = "";
 						
 					if($secondrequestsliprow[$j] != "")
@@ -153,6 +148,9 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 	
 					//bhavin
 					if(!$selective || $selected_requisition)
+
+					// 2 is representing type of request slip and 3 is representing number of request slip
+
 					printRequestSlip(2,$firstrequestslipdata,$secondrequestslipdata,$thirdrequestslipdata,3,$noofbooks,$printersinfo);												
 					//$noofbooks++;
 				}
@@ -213,8 +211,7 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 					}								
 				}
 
-				
-				
+					
 				//bhavin
 				for($j=0, $p=1; $j<count($firstchequerow); $j++, $p++)
 				{
@@ -628,7 +625,7 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 					// printing small box ends ----------------------------------
 					
 					//Second Part
-					
+
 					$pdf->SetFont('Arial','B',8);
 					$pdf->Text(105,100,'Cheque Book Request (Bank Copy)                    Date:________________');
 					$pdf->SetFont('Arial','B',7);
@@ -754,6 +751,7 @@ $trn_string_array =  array(10 => 'Saving', 11 => 'Current', 12=> '', 13 => 'Cash
 					$pdf->Text($smdotx,$smy,':');
 					$pdf->Text($sminfx,$smy,$branchDetailsT->branch_reg_busi_hrs);
 					$smy += $smdy;
+				// $smy = $smy + $smdy,,,,,,$smy += $smdy;
 
 					$pdf->Text($smx,$smy,'Half Day Busi. Hrs.');
 					$pdf->Text($smdotx,$smy,':');

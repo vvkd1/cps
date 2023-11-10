@@ -140,13 +140,14 @@ $(document).ready(function(){
 		if($(this).attr('checked')) {
 			selected_ids_array.push($(this).attr("id"));					
 		  } else {			 
+
 			  removeByValue(selected_ids_array, $(this).attr("id"));
 		  }
 	});
 
 	});
 	
-	/*checkbox_click = function(){ 		  
+	/*checkbox_click = function(){ 		 
 		  if($(this).attr('checked')) {
 			selected_ids_array.push($(this).attr("id"));					
 		  } else {			 

@@ -15,10 +15,10 @@
 	else
 	{	
 		if($rowresults = $db->get_results("SELECT * FROM tb_pending_print_req where cps_isprint = 1"))
-		
+
 		{
-			foreach($rowresults as $results)
-			{
+			foreach($rowresults as $results)  
+			 {
 				$rowchkserise = $db->get_row("SELECT series_lastno FROM tb_cps_chequeseries WHERE series_transationcode = $results->cps_tr_code AND serise_branchcode_branch = $results->cps_branchmicr_code");				
 				$chequefrom = $rowchkserise->series_lastno;
 				$chequeto = $chequefrom + ($results->cps_book_size * $results->cps_no_of_books) - 1;

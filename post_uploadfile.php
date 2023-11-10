@@ -31,6 +31,7 @@ if(@$_FILES['uploadedfile']['name']!='')
 {
 	if($_FILES["uploadedfile"]["size"] < 524288) 
 	{
+
 		$arrfile = explode(".",$_FILES['uploadedfile']['name']);
 		$filetype = $arrfile[count($arrfile)-1];	
 		
